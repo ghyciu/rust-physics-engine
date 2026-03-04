@@ -1,4 +1,4 @@
-use crate::Graphics::Shape::Shape;
+use crate::graphics::shape::Shape;
 use macroquad::prelude::*;
 pub struct Square;
 

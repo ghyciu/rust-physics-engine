@@ -1,10 +1,10 @@
-mod Graphics;
-mod Physics;
+mod graphics;
+mod physics;
 
 use macroquad::prelude::*;
-use crate::Graphics::GraphicsManager::GraphicsManager;
-use crate::Graphics::Square::Square;
-use crate::Physics::Point2D::Point2D;
+use crate::graphics::graphics_manager::GraphicsManager;
+use crate::graphics::square::Square;
+use physics::point_2d::Point2D;
 
 #[macroquad::main("Physics Engine")]
 async fn main() {

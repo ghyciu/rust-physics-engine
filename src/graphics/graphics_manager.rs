@@ -1,5 +1,5 @@
-use crate::Graphics::Shape::Shape;
-use crate::Graphics::Square::Square;
+use crate::graphics::shape::Shape;
+use crate::graphics::square::Square;
 
 pub struct GraphicsManager {
   shapes: Vec<Box<dyn Shape>>
