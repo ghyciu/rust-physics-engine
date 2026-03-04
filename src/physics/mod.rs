@@ -1,1 +1,2 @@
-pub mod point_2d;
+pub mod vector;
+mod scalar;
