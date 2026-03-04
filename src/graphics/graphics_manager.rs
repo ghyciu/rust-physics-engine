@@ -1,8 +1,8 @@
-use crate::graphics::shape::Shape;
+use crate::graphics::shape::{Render, Shape};
 use crate::graphics::square::Square;
 
 pub struct GraphicsManager {
-  shapes: Vec<Box<dyn Shape>>
+  shapes: Vec<Shape>
 }
 
 impl GraphicsManager {
@@ -10,8 +10,8 @@ impl GraphicsManager {
     GraphicsManager { shapes: Vec::new() }
   }
 
-  pub fn add_shape(&mut self, shape: Square) {
-    self.shapes.push(Box::new(shape));
+  pub fn add_shape<T: Into<Shape>>(&mut self, shape: T) {
+    self.shapes.push(shape.into());
   }
 
   pub fn render(&self) {

@@ -1,23 +1,16 @@
 mod graphics;
 mod physics;
 
+use crate::graphics::line::Line;
 use macroquad::prelude::*;
 use crate::graphics::graphics_manager::GraphicsManager;
-use crate::graphics::square::Square;
-use physics::vector::Vector;
+use crate::graphics::shape::Shape;
+use crate::physics::vector2::Vector2;
 
 #[macroquad::main("Physics Engine")]
 async fn main() {
-  let point_a: Vector = Vector::new(1, 2);
-  let point_b: Vector = Vector::new(2, 3);
-  print!("{}", point_a + point_b);
-  print!("{}", point_a - point_b);
-  print!("{}", point_a * 2);
-  print!("{}", point_a / 2);
-  print!("{}", point_a == point_b);
-
   let mut graphics_manager: GraphicsManager = GraphicsManager::new();
-  graphics_manager.add_shape(Square::new());
+  graphics_manager.add_shape(Line::new(Vector2::new(1, 1), Vector2::new(20, 20)));
   loop {
     clear_background(WHITE);
     graphics_manager.render();

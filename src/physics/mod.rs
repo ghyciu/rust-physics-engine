@@ -1,2 +1,2 @@
-pub mod vector;
-mod scalar;
+pub mod vector2;
+mod math;
