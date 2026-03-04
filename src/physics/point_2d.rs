@@ -6,9 +6,25 @@ pub struct Point2D {
   y: f32,
 }
 
+pub trait Point2DValue {
+  fn to_f32(self) -> f32;
+}
+
+impl Point2DValue for f32 {
+  fn to_f32(self) -> f32 {
+    self
+  }
+}
+
+impl Point2DValue for i32 {
+  fn to_f32(self) -> f32 {
+    self as f32
+  }
+}
+
 impl Point2D {
-  pub fn new(x: f32, y: f32) -> Point2D {
-    Point2D { x, y }
+  pub fn new<T: Point2DValue>(x: T, y: T) -> Point2D {
+    Point2D { x: x.to_f32(), y: y.to_f32() }
   }
 }
 

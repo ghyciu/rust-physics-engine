@@ -8,7 +8,8 @@ use physics::point_2d::Point2D;
 
 #[macroquad::main("Physics Engine")]
 async fn main() {
-  print!("{}", Point2D::new(1.0, 2.0));
+  let point_a: Point2D = Point2D::new(1, 2);
+  print!("{}", point_a);
 
   let mut graphics_manager: GraphicsManager = GraphicsManager::new();
   graphics_manager.add_shape(Square::new());
