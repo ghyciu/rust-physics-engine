@@ -1,4 +1,4 @@
-use super::vector2value::Vector2Value;
+use super::scalar::Scalar;
 use std::fmt;
 use std::hash::{Hash, Hasher};
 use std::ops::Add;
@@ -18,8 +18,8 @@ pub struct Vector2 {
 
 impl Vector2 {
   /// Creates a new `Vector2`.
-  pub fn new<T: Vector2Value, U: Vector2Value>(x: T, y: U) -> Vector2 {
-    Vector2 { x: x.to_f32(), y: y.to_f32() }
+  pub fn new<T: Scalar, U: Scalar>(x: T, y: U) -> Vector2 {
+    Vector2 { x: x.to_scalar(), y: y.to_scalar() }
   }
 
   /// Shorthand constructor for ```Vector2::new(0, 0)```.
@@ -52,21 +52,21 @@ impl Sub<Vector2> for Vector2 {
   }
 }
 
-/// Multiplies a `Vector2` by a scalar factor `k`.
-impl<T: Vector2Value> Mul<T> for Vector2 {
+/// Multiplies a `Vector2` by a `Scalar`.
+impl<T: Scalar> Mul<T> for Vector2 {
   type Output = Vector2;
-  fn mul(self, other: T) -> Vector2 {
-    let other_f32 = other.to_f32();
-    Vector2::new(self.get_x() * other_f32, self.get_y() * other_f32)
+  fn mul(self, scalar: T) -> Vector2 {
+    let scalar = scalar.to_scalar();
+    Vector2::new(self.get_x() * scalar, self.get_y() * scalar)
   }
 }
 
-/// Divides a `Vector2` by a scalar factor `k`.
-impl<T: Vector2Value> Div<T> for Vector2 {
+/// Divides a `Vector2` by a `Scalar`.
+impl<T: Scalar> Div<T> for Vector2 {
   type Output = Vector2;
-  fn div(self, other: T) -> Vector2 {
-    let other_f32 = other.to_f32();
-    Vector2::new(self.get_x() / other_f32, self.get_y() / other_f32)
+  fn div(self, scalar: T) -> Vector2 {
+    let scalar = scalar.to_scalar();
+    Vector2::new(self.get_x() / scalar, self.get_y() / scalar)
   }
 }
 

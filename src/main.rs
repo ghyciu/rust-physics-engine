@@ -14,7 +14,7 @@ use crate::physics::math::Math;
 async fn main() {
   let mut canvas: Canvas = Canvas::new();
   canvas.add_shape(Line::new(Vector2::ZERO, Vector2::new(20, 20)));
-  canvas.add_shape(Circle::new(Vector2::ZERO, 20_f32));
+  canvas.add_shape(Circle::new(Vector2::ZERO, 20));
   print!("{}", Math::length(Vector2::new(3, 4)));
   loop {
     clear_background(WHITE);
