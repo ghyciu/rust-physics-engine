@@ -7,7 +7,8 @@ pub trait Renderable {
 impl Renderable for Shape {
   fn render(&self) {
     match self {
-      Shape::Line(line) => line.render()
+      Shape::Line(line) => line.render(),
+      Shape::Circle(circle) => circle.render(),
     }
   }
 }

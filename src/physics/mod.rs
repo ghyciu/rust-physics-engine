@@ -1,3 +1,3 @@
 pub mod vector2;
 pub mod vector2value;
-mod math;
+pub mod math;
