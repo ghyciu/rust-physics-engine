@@ -1,5 +1,5 @@
 /// Represents an `i32` or `f32` used in `Vector2` instantiation, when multiplying or dividing a
-/// `Vector2` by a scalar, or rendering in graphics.
+/// `Vector2` by a factor.
 pub trait Scalar {
   fn to_scalar(self) -> f32;
 }

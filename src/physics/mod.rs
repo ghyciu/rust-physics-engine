@@ -1,7 +1,7 @@
-pub mod vector2;
-pub mod scalar;
-pub mod math;
+mod vector2;
+mod scalar;
+mod math;
 mod shape;
-pub mod circle;
+pub(crate) mod circle;
 mod body;
-pub mod rigidbody;
+pub(crate) mod rigid_body;

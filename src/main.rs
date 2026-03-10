@@ -1,4 +1,4 @@
-use crate::physics::rigidbody::RigidBody;
+use crate::physics::rigid_body::RigidBody;
 use crate::physics::circle::Circle;
 
 mod physics;
