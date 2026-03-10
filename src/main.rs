@@ -4,7 +4,6 @@ mod physics;
 use crate::graphics::line::Line;
 use macroquad::prelude::*;
 use crate::graphics::canvas::Canvas;
-use crate::graphics::shape::Shape;
 use crate::physics::vector2::Vector2;
 
 #[macroquad::main("Physics Engine")]
