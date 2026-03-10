@@ -1,13 +1,13 @@
-use crate::graphics::shape::{Render, Shape};
-use crate::graphics::square::Square;
+use crate::graphics::renderable::Renderable;
+use super::shape::Shape;
 
-pub struct GraphicsManager {
+pub struct Canvas {
   shapes: Vec<Shape>
 }
 
-impl GraphicsManager {
-  pub fn new() -> GraphicsManager {
-    GraphicsManager { shapes: Vec::new() }
+impl Canvas {
+  pub fn new() -> Canvas {
+    Canvas { shapes: Vec::new() }
   }
 
   pub fn add_shape<T: Into<Shape>>(&mut self, shape: T) {

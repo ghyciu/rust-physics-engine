@@ -1,8 +1,7 @@
 use macroquad::color::BLACK;
 use macroquad::shapes::draw_line;
-use macroquad::window::screen_width;
 use macroquad::window::screen_height;
-use crate::graphics::shape::Render;
+use super::renderable::Renderable;
 use crate::physics::vector2::Vector2;
 
 pub struct Line {
@@ -16,7 +15,7 @@ impl Line {
   }
 }
 
-impl Render for Line {
+impl Renderable for Line {
   fn render(&self) {
     let origin_x: f32 = self.origin.get_x();
     let origin_y: f32 = self.origin.get_y();

@@ -1,4 +1,4 @@
-pub(crate) mod shape;
-pub(crate) mod graphics_manager;
-pub(crate) mod square;
-pub(crate) mod line;
+pub mod shape;
+pub mod canvas;
+pub mod line;
+mod renderable;
