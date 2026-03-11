@@ -1,20 +1,13 @@
 use crate::physics::circle::CircleResult;
+use crate::physics::shape::Shape;
 
-pub enum ShapeResult {
-  CircleResult(CircleResult)
+pub type ShapeResult = Result<Shape, &'static str>;
+pub trait ToShapeResult {
+  fn to_shape_result(&self) -> ShapeResult;
 }
 
-impl From<CircleResult> for ShapeResult {
-  fn from(result: CircleResult) -> ShapeResult {
-    ShapeResult::CircleResult(result)
-  }
-}
-
-impl Copy for ShapeResult {}
-impl Clone for ShapeResult {
-  fn clone(&self) -> ShapeResult {
-    match self {
-      ShapeResult::CircleResult(circle) => ShapeResult::CircleResult(circle.clone()),
-    }
+impl ToShapeResult for CircleResult {
+  fn to_shape_result(&self) -> ShapeResult {
+    self.map(Shape::Circle)
   }
 }

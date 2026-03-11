@@ -1,5 +1,5 @@
 use std::fmt;
-use super::circle::{Circle, CircleResult};
+use super::circle::Circle;
 
 /// A `Shape` is any object implemented by `RigidBody` which contains a specific set of values for
 /// how they will be rendered on the screen. Different shapes will have different `Shape` fields.

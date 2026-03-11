@@ -14,7 +14,8 @@ pub struct Circle {
 pub type CircleResult = Result<Circle, &'static str>;
 
 impl Circle {
-  /// Creates a new `Circle` with radius `Scalar`.
+  /// Creates a new `Circle` with radius `Scalar`. Returns a `CircleResult` which may
+  /// result in an `Error`.
   pub fn new<T: Scalar>(radius: T) -> CircleResult {
     let radius: CircleRadius = CircleRadius::new(radius.to_scalar())?;
     Ok(Circle{ radius })
