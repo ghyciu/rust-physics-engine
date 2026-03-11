@@ -1,4 +1,5 @@
 use std::fmt;
+use crate::physics::circle_radius::CircleRadius;
 use super::scalar::Scalar;
 
 /// Represents a circle with radius `radius`.
@@ -7,18 +8,21 @@ use super::scalar::Scalar;
 /// let circle = Circle::new(5)
 /// ```
 pub struct Circle {
-  radius: f32,
+  radius: CircleRadius,
 }
 
+pub type CircleResult = Result<Circle, &'static str>;
+
 impl Circle {
-  /// Creates a new `Circle` with radius `radius`.
-  pub fn new<T: Scalar>(radius: T) -> Self {
-    Circle {radius: radius.to_scalar()}
+  /// Creates a new `Circle` with radius `Scalar`.
+  pub fn new<T: Scalar>(radius: T) -> CircleResult {
+    let radius: CircleRadius = CircleRadius::new(radius.to_scalar())?;
+    Ok(Circle{ radius })
   }
 
   /// Private getter to get `circle.radius`. Used only when printing to console.
   fn get_radius(&self) -> f32 {
-    self.radius
+    self.radius.get()
   }
 }
 

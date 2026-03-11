@@ -23,11 +23,6 @@ impl Body {
   fn get_position(&self) -> Vector2 {
     self.position
   }
-
-  /// Private getter for `body.rotation`. Used only when printing to console.
-  fn get_rotation(&self) -> f32 {
-    self.rotation
-  }
 }
 
 impl Copy for Body {}
@@ -37,9 +32,9 @@ impl Clone for Body {
   }
 }
 
-/// Prints the `Body` object represented as `Body(position, rotation)` in text.
+/// Prints the `Body` object represented as `Body(position)` in text.
 impl fmt::Display for Body {
   fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-    write!(f, "{}, {}", self.get_position(), self.get_rotation())
+    write!(f, "{}", self.get_position())
   }
 }

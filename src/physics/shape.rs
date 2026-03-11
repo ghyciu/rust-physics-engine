@@ -1,17 +1,10 @@
 use std::fmt;
-use super::circle::Circle;
+use super::circle::{Circle, CircleResult};
 
 /// A `Shape` is any object implemented by `RigidBody` which contains a specific set of values for
 /// how they will be rendered on the screen. Different shapes will have different `Shape` fields.
 pub enum Shape {
   Circle(Circle)
-}
-
-/// Converts the `Circle` object to a `Shape` object. Used to infer that a `Circle` is a type of `Shape`.
-impl From<Circle> for Shape {
-  fn from(circle: Circle) -> Self {
-    Shape::Circle(circle)
-  }
 }
 
 impl Copy for Shape {}
