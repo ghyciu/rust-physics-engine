@@ -16,8 +16,9 @@ pub struct Vector2 {
   y: f32,
 }
 
+///
 impl Vector2 {
-  /// Creates a new `Vector2`.
+  /// Create a new [`Vector2`].
   pub fn new<T: Scalar, U: Scalar>(x: T, y: U) -> Vector2 {
     Vector2 { x: x.to_scalar(), y: y.to_scalar() }
   }
@@ -25,18 +26,18 @@ impl Vector2 {
   /// Shorthand constructor for ```Vector2::new(0, 0)```.
   pub const ZERO: Vector2 = Vector2 { x: 0.0, y: 0.0 };
 
-  /// Public getter for `Vector2.x`.
+  /// Return the `x` of the [`Vector2`].
   pub fn get_x(&self) -> f32 {
     self.x
   }
 
-  /// Public getter for `Vector2.y`.
+  /// Return the `y` of the [`Vector2`].
   pub fn get_y(&self) -> f32 {
     self.y
   }
 }
 
-/// Adds two `Vector2` together.
+/// Implementation for adding two [`Vector2`] together.
 impl Add<Vector2> for Vector2 {
   type Output = Vector2;
   fn add(self, other: Vector2) -> Vector2 {
@@ -44,7 +45,7 @@ impl Add<Vector2> for Vector2 {
   }
 }
 
-/// Subtracts a `Vector2` from a `Vector2`.
+/// Implementation for subtracting a [`Vector2`] by a `Vector2`.
 impl Sub<Vector2> for Vector2 {
   type Output = Vector2;
   fn sub(self, other: Vector2) -> Vector2 {
@@ -52,7 +53,7 @@ impl Sub<Vector2> for Vector2 {
   }
 }
 
-/// Multiplies a `Vector2` by a `Scalar`.
+/// Implementation for multiplying a [`Vector2`] by a [`Scalar`].
 impl<T: Scalar> Mul<T> for Vector2 {
   type Output = Vector2;
   fn mul(self, scalar: T) -> Vector2 {
@@ -61,7 +62,7 @@ impl<T: Scalar> Mul<T> for Vector2 {
   }
 }
 
-/// Divides a `Vector2` by a `Scalar`.
+/// Implementation for dividing a [`Vector2`] by a [`Scalar`].
 impl<T: Scalar> Div<T> for Vector2 {
   type Output = Vector2;
   fn div(self, scalar: T) -> Vector2 {
@@ -77,25 +78,8 @@ impl Clone for Vector2 {
   }
 }
 
-/// Prints the `Vector2` represented as `(x, y)` in text.
 impl fmt::Display for Vector2 {
   fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
     write!(f, "({}, {})", self.get_x(), self.get_y())
-  }
-}
-
-/// Returns `true` if the x and y components of the two comparing `Vector2` are equal.
-impl Eq for Vector2 {}
-impl PartialEq for Vector2 {
-  fn eq(&self, other: &Vector2) -> bool {
-    self.get_x() == other.get_x() && self.get_y() == other.get_y()
-  }
-}
-
-/// Allows `Vector2` to be used as a `HashMap` or `HashSet` entry.
-impl Hash for Vector2 {
-  fn hash<H: Hasher>(&self, state: &mut H) {
-    self.get_x().to_bits().hash(state);
-    self.get_y().to_bits().hash(state);
   }
 }

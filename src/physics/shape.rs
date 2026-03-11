@@ -1,7 +1,7 @@
 use std::fmt;
 use super::circle::{Circle, CircleResult};
 
-/// Describes the physical characteristics of a [`RigidBody`]. Each variant of [`Shape`] can contain different fields.
+/// Describes the physical characteristics of a [`RigidBody`](super::rigid_body::RigidBody). Each variant of [`Shape`] can contain different fields.
 pub enum Shape {
   Circle(Circle)
 }
@@ -24,7 +24,7 @@ impl fmt::Display for Shape {
 }
 
 /// [`Result`] object generated whose [`Ok`] variant returns a type
-/// of [`Shape`]. Called as a parameter when attempting to initialize a [`RigidBody`].
+/// of [`Shape`]. Called as a parameter when attempting to initialize a [`RigidBody`](super::rigid_body::RigidBody).
 ///
 /// **Variants:** [`CircleResult`]
 pub type ShapeResult = Result<Shape, &'static str>;

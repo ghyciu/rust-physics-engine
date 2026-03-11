@@ -2,7 +2,7 @@ use std::fmt;
 use crate::physics::scalar::Scalar;
 use super::vector2::Vector2;
 
-/// Describes the physics of a [`RigidBody`] and how they will interact with the [`World`].
+/// Describes the physics of a [`RigidBody`](super::rigid_body::RigidBody) and how they will interact with the [`World`](super::world::World).
 pub struct Body {
   position: Vector2,
   rotation: f32,
@@ -17,7 +17,7 @@ impl Body {
   /// Shorthand constructor for `Body::new(Vector2::new(0, 0), 0)`.
   pub const ZERO: Body = Body {position: Vector2::ZERO, rotation: 0.0};
 
-  /// Private getter for `body.position`. Used only when printing to console.
+  /// Return the `position` of the `Body`.
   fn get_position(&self) -> Vector2 {
     self.position
   }

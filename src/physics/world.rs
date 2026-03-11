@@ -1,3 +1,4 @@
+/// Describes the world interacted by [`RigidBody`](super::rigid_body::RigidBody) objects.
 pub struct World {
 
 }

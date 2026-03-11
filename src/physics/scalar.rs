@@ -1,4 +1,4 @@
-/// Describes a numeric value. Used when creating a [`Vector2`] or when multiplying or dividing a `Vector2`
+/// Describes a numeric value. Used when creating a [`Vector2`](super::vector2::Vector2) or when multiplying or dividing a `Vector2`
 /// by some numeric factor.
 pub trait Scalar {
   /// Converts the numeric value to a [`Scalar`].
