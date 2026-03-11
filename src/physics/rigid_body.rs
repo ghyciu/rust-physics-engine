@@ -1,29 +1,31 @@
 use std::fmt;
-use crate::physics::circle::{Circle};
-use crate::physics::shape::{Shape};
-use crate::physics::shape_result::{ToShapeResult, ShapeResult};
+use crate::physics::shape::{Shape, ShapeResult, ToShapeResult};
 use super::body::Body;
 
-/// A `RigidBody` is any component with a general set of values in `Body` and a specific set of values
-/// `Shape` on how they will be rendered on the screen.
+/// Describes any object with physics and characteristics.
 pub struct RigidBody {
   shape: Shape,
   body: Body,
 }
 
+/// [`Result`] object returned when creating a new [`RigidBody`]. May return an [`Err`] if
+/// the [`ShapeResult`] is invalid.
 type RigidBodyResult = Result<RigidBody, &'static str>;
 
 impl RigidBody {
+  /// Create a new [`RigidBody`]. Returns a [`RigidBodyResult`].
   pub fn new<T: ToShapeResult>(shape_result: T) -> RigidBodyResult {
     let shape_result: ShapeResult = shape_result.to_shape_result();
     let shape: Shape = shape_result?;
     Ok(RigidBody{shape, body: Body::ZERO})
   }
 
+  /// Get the `shape` of the [`RigidBody`]. Returns a [`Shape`].
   fn get_shape(&self) -> Shape {
     self.shape
   }
 
+  /// Get the `body` of the [`RigidBody`]. Returns a [`Body`].
   fn get_body(&self) -> Body {
     self.body
   }

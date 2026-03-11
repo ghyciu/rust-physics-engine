@@ -6,5 +6,3 @@ pub(crate) mod circle;
 mod body;
 pub(crate) mod rigid_body;
 mod world;
-mod circle_radius;
-mod shape_result;
