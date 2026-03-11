@@ -1,8 +1,9 @@
-use crate::physics::rigid_body::RigidBody;
+
 use crate::physics::circle::Circle;
+use crate::physics::rigid_body::RigidBody;
 
 mod physics;
 
 fn main() {
-  print!("{}", RigidBody::new(Circle::new(5)).unwrap());
+  print!("{:?}", RigidBody::new(Circle::new(-5)));
 }

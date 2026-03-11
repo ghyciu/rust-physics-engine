@@ -1,18 +1,10 @@
 use std::fmt;
-use super::circle::{Circle, CircleResult};
+use super::circle::{Circle, CircleError, CircleResult};
 
-/// Describes the physical characteristics of a [`RigidBody`](super::rigid_body::RigidBody). Each variant of [`Shape`] can contain different fields.
+/// Physical characteristics of a [`RigidBody`](super::rigid_body::RigidBody). Each variant of [`Shape`] can contain different fields.
+#[derive(Debug, Copy, Clone)]
 pub enum Shape {
   Circle(Circle)
-}
-
-impl Copy for Shape {}
-impl Clone for Shape {
-  fn clone(&self) -> Shape {
-    match self {
-      Shape::Circle(circle) => Shape::Circle(circle.clone()),
-    }
-  }
 }
 
 impl fmt::Display for Shape {
@@ -23,23 +15,28 @@ impl fmt::Display for Shape {
   }
 }
 
-/// [`Result`] object generated whose [`Ok`] variant returns a type
-/// of [`Shape`]. Called as a parameter when attempting to initialize a [`RigidBody`](super::rigid_body::RigidBody).
+/// [`Result`] whose [`Ok`] variant returns a type of [`Shape`]. May return a [`ShapeError`] if the variant `Shape` is invalid.
 ///
 /// **Variants:** [`CircleResult`]
-pub type ShapeResult = Result<Shape, &'static str>;
+pub type ShapeResult = Result<Shape, ShapeError>;
 
-/// Ability for any [`ShapeResult`] variant to convert itself to a `ShapeResult`.
+/// [`Err`] returned by [`ShapeResult`].
+#[derive(Debug)]
+pub(crate) enum ShapeError {
+  CircleError(CircleError)
+}
+
+/// Trait for any [`ShapeResult`] variant to convert itself to a `ShapeResult`.
 /// Each `ShapeResult` variant must implement this trait.
 pub trait ToShapeResult {
   /// Converts the [`ShapeResult`] variant to a `ShapeResult`.
-  fn to_shape_result(&self) -> ShapeResult;
+  fn to_shape_result(self) -> ShapeResult;
 }
 
 /// Implementation for the [`ToShapeResult`] trait for [`CircleResult`].
 impl ToShapeResult for CircleResult {
   /// Converts the [`CircleResult`] to a [`ShapeResult`].
-  fn to_shape_result(&self) -> ShapeResult {
-    self.map(Shape::Circle)
+  fn to_shape_result(self) -> ShapeResult {
+    self.map(Shape::Circle).map_err(ShapeError::CircleError)
   }
 }

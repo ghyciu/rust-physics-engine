@@ -1,16 +1,17 @@
 use std::fmt;
-use crate::physics::shape::{Shape, ShapeResult, ToShapeResult};
+use crate::physics::shape::{Shape, ShapeError, ShapeResult, ToShapeResult};
 use super::body::Body;
 
-/// Describes any object with physics and characteristics.
+/// Any object with physics and characteristics.
+#[derive(Debug)]
 pub struct RigidBody {
   shape: Shape,
   body: Body,
 }
 
-/// [`Result`] object returned when creating a new [`RigidBody`]. May return an [`Err`] if
+/// [`Result`] returned when creating a new [`RigidBody`]. May return an [`RigidBodyError`] if
 /// the [`ShapeResult`] is invalid.
-type RigidBodyResult = Result<RigidBody, &'static str>;
+type RigidBodyResult = Result<RigidBody, RigidBodyError>;
 
 impl RigidBody {
   /// Create a new [`RigidBody`]. Returns a [`RigidBodyResult`].
@@ -20,12 +21,12 @@ impl RigidBody {
     Ok(RigidBody{shape, body: Body::ZERO})
   }
 
-  /// Get the `shape` of the [`RigidBody`]. Returns a [`Shape`].
+  /// Gets the `shape`.
   fn get_shape(&self) -> Shape {
     self.shape
   }
 
-  /// Get the `body` of the [`RigidBody`]. Returns a [`Body`].
+  /// Gets the `body`.
   fn get_body(&self) -> Body {
     self.body
   }
@@ -34,5 +35,17 @@ impl RigidBody {
 impl fmt::Display for RigidBody {
   fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
     write!(f, "RigidBody({} at {})", self.get_shape(), self.get_body())
+  }
+}
+
+#[derive(Debug)]
+/// [`Err`] returned by [`RigidBodyResult`].
+pub enum RigidBodyError {
+  ShapeError(ShapeError)
+}
+
+impl From<ShapeError> for RigidBodyError {
+  fn from(value: ShapeError) -> Self {
+    RigidBodyError::ShapeError(value)
   }
 }

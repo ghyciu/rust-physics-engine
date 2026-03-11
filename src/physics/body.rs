@@ -3,6 +3,7 @@ use crate::physics::scalar::Scalar;
 use super::vector2::Vector2;
 
 /// Describes the physics of a [`RigidBody`](super::rigid_body::RigidBody) and how they will interact with the [`World`](super::world::World).
+#[derive(Debug, Copy, Clone)]
 pub struct Body {
   position: Vector2,
   rotation: f32,
@@ -20,13 +21,6 @@ impl Body {
   /// Return the `position` of the `Body`.
   fn get_position(&self) -> Vector2 {
     self.position
-  }
-}
-
-impl Copy for Body {}
-impl Clone for Body {
-  fn clone(&self) -> Body {
-    *self
   }
 }
 

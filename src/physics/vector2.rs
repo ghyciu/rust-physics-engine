@@ -1,6 +1,5 @@
 use super::scalar::Scalar;
 use std::fmt;
-use std::hash::{Hash, Hasher};
 use std::ops::Add;
 use std::ops::Sub;
 use std::ops::Mul;
@@ -11,6 +10,7 @@ use std::ops::Div;
 /// ```
 /// let v: Vector2 = Vector2::new(x, y)
 /// ```
+#[derive(Debug)]
 pub struct Vector2 {
   x: f32,
   y: f32,
