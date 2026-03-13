@@ -22,7 +22,7 @@ pub type ShapeResult = Result<Shape, ShapeError>;
 
 /// [`Err`] returned by [`ShapeResult`].
 #[derive(Debug)]
-pub(crate) enum ShapeError {
+pub enum ShapeError {
   CircleError(CircleError)
 }
 
