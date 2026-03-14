@@ -5,10 +5,10 @@ use std::ops::Sub;
 use std::ops::Mul;
 use std::ops::Div;
 
-/// Represents a 2D Vector with values `x` and `y`.
+/// 2D Vector with values `x` and `y`.
 /// # Construction
 /// ```
-/// let v: Vector2 = Vector2::new(x, y)
+/// let v: Vector2 = Vector2::new(x, y);
 /// ```
 #[derive(Debug)]
 pub struct Vector2 {
@@ -18,7 +18,7 @@ pub struct Vector2 {
 
 ///
 impl Vector2 {
-  /// Create a new [`Vector2`].
+  /// Creates a new [`Vector2`].
   pub fn new<T: Scalar, U: Scalar>(x: T, y: U) -> Vector2 {
     Vector2 { x: x.to_scalar(), y: y.to_scalar() }
   }
@@ -26,12 +26,12 @@ impl Vector2 {
   /// Shorthand constructor for ```Vector2::new(0, 0)```.
   pub const ZERO: Vector2 = Vector2 { x: 0.0, y: 0.0 };
 
-  /// Return the `x` of the [`Vector2`].
+  /// Returns the `x` of the [`Vector2`].
   pub fn get_x(&self) -> f32 {
     self.x
   }
 
-  /// Return the `y` of the [`Vector2`].
+  /// Returns the `y` of the [`Vector2`].
   pub fn get_y(&self) -> f32 {
     self.y
   }

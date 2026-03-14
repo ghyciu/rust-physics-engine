@@ -1,5 +1,5 @@
 use std::fmt;
-use crate::physics::shape::{Shape, ShapeError, ShapeResult, ToShapeResult};
+use crate::shape::{Shape, ShapeError, ShapeResult, ToShapeResult};
 use super::body::Body;
 
 /// Any object with physics and characteristics.

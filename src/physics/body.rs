@@ -1,6 +1,5 @@
 use std::fmt;
-use crate::physics::scalar::Scalar;
-use super::vector2::Vector2;
+use crate::math::{Vector2, Scalar};
 
 /// Describes the physics of a [`RigidBody`](super::rigid_body::RigidBody) and how they will interact with the [`World`](super::world::World).
 #[derive(Debug, Copy, Clone)]

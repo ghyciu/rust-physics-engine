@@ -1,6 +1,4 @@
-
-use crate::physics::circle::Circle;
-use crate::physics::rigid_body::RigidBody;
+use rust_physics_engine::shape::circle::Circle;
 
 mod physics;
 

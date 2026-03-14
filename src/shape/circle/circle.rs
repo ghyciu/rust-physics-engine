@@ -1,11 +1,11 @@
 use std::fmt;
-use crate::physics::scalar::Scalar;
+use crate::math::Scalar;
 use super::{CircleRadius, CircleError};
 
-/// Circle with radius `radius`.
+/// Circle with radius of length `radius`.
 /// # Construction
 /// ```
-/// let circle = Circle::new(5)
+/// let circle = Circle::new(5);
 /// ```
 #[derive(Debug, Copy, Clone)]
 pub struct Circle {

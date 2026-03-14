@@ -1,6 +1,6 @@
 use super::CircleRadiusError;
 
-/// Validated `radius` of a [`Circle`](super::Circle) object.
+/// Validated `radius` of a [`Circle`](super::Circle).
 #[derive(Debug, Copy, Clone)]
 pub struct CircleRadius(f32);
 
