@@ -1,12 +1,10 @@
-use super::CircleRadiusError;
+use super::{CircleRadiusError, CircleRadiusResult};
 
 /// Validated `radius` of a [`Circle`](super::Circle).
 #[derive(Debug, Copy, Clone)]
 pub struct CircleRadius(f32);
 
-/// [`Result`] returned when creating a new [`CircleRadius`]. May return
-/// a [`CircleRadiusError`] if invalid. A variant of [`CircleResult`](super::CircleResult).
-pub type CircleRadiusResult = Result<CircleRadius, CircleRadiusError>;
+
 
 impl CircleRadius {
   /// Creates a new [`CircleRadius`] object. Returns a [`CircleRadiusResult`].

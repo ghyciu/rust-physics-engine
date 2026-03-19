@@ -1,16 +1,12 @@
-use crate::shape::circle::{CircleError, CircleResult};
-use crate::shape::Shape;
+use crate::shape::circle::{CircleResult};
+use super::{Shape, ShapeError};
 
 /// [`Result`] whose [`Ok`] variant returns a type of [`Shape`]. May return a [`ShapeError`] if the variant `Shape` is invalid.
 ///
 /// **Variants:** [`CircleResult`]
 pub type ShapeResult = Result<Shape, ShapeError>;
 
-/// [`Err`] returned by [`ShapeResult`].
-#[derive(Debug)]
-pub enum ShapeError {
-  CircleError(CircleError)
-}
+
 
 /// Trait for any [`ShapeResult`] variant to convert itself to a `ShapeResult`.
 /// Each `ShapeResult` variant must implement this trait.

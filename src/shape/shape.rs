@@ -1,7 +1,8 @@
 use std::fmt;
 use super::circle::Circle;
 
-/// Physical characteristics of a [`RigidBody`](RigidBody). Each variant of [`Shape`] can contain different fields.
+/// A graphical representation of an object. Each variant of [`Shape`] can contain different fields. Required by
+/// [`RigidBody`](crate::physics::RigidBody).
 #[derive(Debug, Copy, Clone)]
 pub enum Shape {
   Circle(Circle)

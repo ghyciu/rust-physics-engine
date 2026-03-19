@@ -1,20 +1,12 @@
 use std::fmt;
 use crate::math::Scalar;
-use super::{CircleRadius, CircleError};
+use super::{CircleResult, CircleRadius};
 
-/// Circle with radius of length `radius`.
-/// # Construction
-/// ```
-/// let circle = Circle::new(5);
-/// ```
+/// A geometric [circle](https://en.wikipedia.org/wiki/Circle) with radius of length `radius`.
 #[derive(Debug, Copy, Clone)]
 pub struct Circle {
   radius: CircleRadius,
 }
-
-/// [`Result`] returned when creating a new [`Circle`]. May return a [`CircleError`]
-/// if [`CircleRadiusResult`](super::CircleRadiusResult) is invalid.
-pub type CircleResult = Result<Circle, CircleError>;
 
 impl Circle {
   /// Creates a new [`Circle`] object. Returns a [`CircleResult`](super::CircleResult).

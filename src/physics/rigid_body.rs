@@ -9,9 +9,9 @@ pub struct RigidBody {
   body: Body,
 }
 
-/// [`Result`] returned when creating a new [`RigidBody`]. May return an [`RigidBodyError`] if
+/// [`Result`] returned when creating a new [`RigidBody`]. May return an [`RigidBodyError`](RigidBodyError) if
 /// the [`ShapeResult`] is invalid.
-type RigidBodyResult = Result<RigidBody, RigidBodyError>;
+pub type RigidBodyResult = Result<RigidBody, RigidBodyError>;
 
 impl RigidBody {
   /// Create a new [`RigidBody`]. Returns a [`RigidBodyResult`].

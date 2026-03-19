@@ -1,7 +1,10 @@
 [package]
 name = "rust-physics-engine"
 version = "0.1.0"
+authors = ["ghyciu"]
 edition = "2024"
+description = "A custom physics engine crate for rust developers"
+license = "MIT"
 
 [dependencies]
 macroquad = "0.4"

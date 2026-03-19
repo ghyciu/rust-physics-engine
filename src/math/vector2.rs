@@ -6,17 +6,12 @@ use std::ops::Mul;
 use std::ops::Div;
 
 /// 2D Vector with values `x` and `y`.
-/// # Construction
-/// ```
-/// let v: Vector2 = Vector2::new(x, y);
-/// ```
 #[derive(Debug)]
 pub struct Vector2 {
   x: f32,
   y: f32,
 }
 
-///
 impl Vector2 {
   /// Creates a new [`Vector2`].
   pub fn new<T: Scalar, U: Scalar>(x: T, y: U) -> Vector2 {
