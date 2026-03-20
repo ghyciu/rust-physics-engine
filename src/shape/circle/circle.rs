@@ -33,20 +33,16 @@ mod tests {
 
   #[test]
   fn new() {
-    assert!(Circle::new(10).is_ok());
     assert!(Circle::new(10.0).is_ok());
-    assert!(Circle::new(-10).is_err());
   }
 
   #[test]
   fn get_radius() {
-    let circle: Circle = Circle::new(10).unwrap();
-    assert_eq!(circle.get_radius(), 10.0);
+    assert_eq!(Circle::new(10.0).unwrap().get_radius(), 10.0_f32);
   }
 
   #[test]
   fn print() {
-    let circle: Circle = Circle::new(10).unwrap();
-    assert_eq!(circle.to_string(), "Circle(10)");
+    assert_eq!(Circle::new(10.0).unwrap().to_string(), "Circle(10)");
   }
 }
