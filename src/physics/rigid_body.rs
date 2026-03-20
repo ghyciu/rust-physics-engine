@@ -3,7 +3,7 @@ use crate::shape::{Shape, ShapeError, ShapeResult, ToShapeResult};
 use super::body::Body;
 
 /// Any object with physics and characteristics.
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct RigidBody {
   shape: Shape,
   body: Body,
@@ -38,7 +38,7 @@ impl fmt::Display for RigidBody {
   }
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 /// [`Err`] returned by [`RigidBodyResult`].
 pub enum RigidBodyError {
   ShapeError(ShapeError)
@@ -47,5 +47,45 @@ pub enum RigidBodyError {
 impl From<ShapeError> for RigidBodyError {
   fn from(value: ShapeError) -> Self {
     RigidBodyError::ShapeError(value)
+  }
+}
+
+#[cfg(test)]
+mod tests {
+  use crate::shape::circle::{Circle, CircleError, CircleRadiusError};
+  use super::*;
+
+  #[test]
+  fn new() {
+    let rigid_body_a: RigidBody = RigidBody::new(Circle::new(10.0)).unwrap();
+    let rigid_body_b: RigidBody = RigidBody {
+      shape: Shape::Circle(Circle::new(10.0).unwrap()),
+      body: Body::ZERO
+    };
+    assert_eq!(rigid_body_a, rigid_body_b);
+  }
+
+  #[test]
+  fn get_shape() {
+    let rigid_body: RigidBody = RigidBody::new(Circle::new(10.0)).unwrap();
+    assert_eq!(rigid_body.get_shape(), Shape::Circle(Circle::new(10.0).unwrap()));
+  }
+
+  #[test]
+  fn get_body() {
+    let rigid_body: RigidBody = RigidBody::new(Circle::new(10.0)).unwrap();
+    assert_eq!(rigid_body.get_body(), Body::ZERO);
+  }
+
+  #[test]
+  fn from_shape_error() {
+    let rigid_body_error: RigidBodyError = ShapeError::CircleError(CircleError::CircleRadiusError(CircleRadiusError::NonPositiveError)).into();
+    assert_eq!(RigidBodyError::ShapeError(ShapeError::CircleError(CircleError::CircleRadiusError(CircleRadiusError::NonPositiveError))), rigid_body_error);
+  }
+
+  #[test]
+  fn print() {
+    let rigid_body: RigidBody = RigidBody::new(Circle::new(10.0)).unwrap();
+    assert_eq!(rigid_body.to_string(), "RigidBody(Circle(10) at (0, 0))");
   }
 }

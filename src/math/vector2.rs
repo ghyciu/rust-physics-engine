@@ -6,7 +6,7 @@ use std::ops::Mul;
 use std::ops::Div;
 
 /// 2D Vector with values `x` and `y`.
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Vector2 {
   x: f32,
   y: f32,
@@ -66,15 +66,49 @@ impl<T: Scalar> Div<T> for Vector2 {
   }
 }
 
-impl Copy for Vector2 {}
-impl Clone for Vector2 {
-  fn clone(&self) -> Vector2 {
-    *self
-  }
-}
-
 impl fmt::Display for Vector2 {
   fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
     write!(f, "({}, {})", self.get_x(), self.get_y())
+  }
+}
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+
+  #[test]
+  fn new() {
+    assert_eq!(Vector2::new(2.0, 3.0), Vector2 {x: 2.0, y:3.0})
+  }
+
+  #[test]
+  fn add() {
+    let vector_a: Vector2 = Vector2::new(1.0, 2.0);
+    let vector_b: Vector2 = Vector2::new(3.0, 4.0);
+    assert_eq!(Vector2::new(4.0, 6.0), vector_a + vector_b);
+  }
+
+  #[test]
+  fn sub() {
+    let vector_a: Vector2 = Vector2::new(4.0, 6.0);
+    let vector_b: Vector2 = Vector2::new(3.0, 4.0);
+    assert_eq!(Vector2::new(1.0, 2.0), vector_a - vector_b);
+  }
+
+  #[test]
+  fn mul() {
+    let vector: Vector2 = Vector2::new(4.0, 1.0);
+    assert_eq!(Vector2::new(8.0, 2.0), vector * 2);
+  }
+
+  #[test]
+  fn div() {
+    let vector: Vector2 = Vector2::new(4.0, 1.0);
+    assert_eq!(Vector2::new(2.0, 0.5), vector / 2);
+  }
+  
+  #[test]
+  fn print() {
+    assert_eq!(Vector2::new(1.0, 2.0).to_string(), "(1, 2)");
   }
 }

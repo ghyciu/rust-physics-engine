@@ -6,8 +6,6 @@ use super::{Shape, ShapeError};
 /// **Variants:** [`CircleResult`]
 pub type ShapeResult = Result<Shape, ShapeError>;
 
-
-
 /// Trait for any [`ShapeResult`] variant to convert itself to a `ShapeResult`.
 /// Each `ShapeResult` variant must implement this trait.
 pub trait ToShapeResult {
@@ -20,5 +18,16 @@ impl ToShapeResult for CircleResult {
   /// Converts the [`CircleResult`] to a [`ShapeResult`].
   fn to_shape_result(self) -> ShapeResult {
     self.map(Shape::Circle).map_err(ShapeError::CircleError)
+  }
+}
+
+#[cfg(test)]
+mod tests {
+  use crate::shape::circle::Circle;
+  use super::*;
+  #[test]
+  fn to_shape_result() {
+    let shape: ShapeResult = Circle::new(10).to_shape_result();
+    assert_eq!(Shape::Circle(Circle::new(10).unwrap()), shape.unwrap());
   }
 }

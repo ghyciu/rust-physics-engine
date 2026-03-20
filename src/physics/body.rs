@@ -2,7 +2,7 @@ use std::fmt;
 use crate::math::{Vector2, Scalar};
 
 /// Describes the physics of a [`RigidBody`](super::rigid_body::RigidBody) and how they will interact with the [`World`](super::world::World).
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Body {
   position: Vector2,
   rotation: f32,
@@ -26,5 +26,25 @@ impl Body {
 impl fmt::Display for Body {
   fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
     write!(f, "{}", self.get_position())
+  }
+}
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+
+  #[test]
+  fn new() {
+    assert_eq!(Body::new(Vector2::new(1.0, 2.0), 3.0), Body { position: Vector2::new(1.0, 2.0), rotation: 3.0 });
+  }
+
+  #[test]
+  fn get_position() {
+    assert_eq!(Body::new(Vector2::new(1.0, 2.0), 3.0).get_position(), Vector2::new(1.0, 2.0));
+  }
+
+  #[test]
+  fn print() {
+    assert_eq!(Body::new(Vector2::new(1.0, 2.0), 3.0).to_string(), "(1, 2)");
   }
 }

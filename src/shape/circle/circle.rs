@@ -3,7 +3,7 @@ use crate::math::Scalar;
 use super::{CircleResult, CircleRadius};
 
 /// A geometric [circle](https://en.wikipedia.org/wiki/Circle) with radius of length `radius`.
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Circle {
   radius: CircleRadius,
 }
