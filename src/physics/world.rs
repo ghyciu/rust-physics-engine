@@ -1,4 +1,4 @@
-/// Describes the world interacted by [`RigidBody`](super::rigid_body::RigidBody) objects.
+/// Describes the world interacted by [`RigidBody`](crate::physics::rigidbody::Rigidbody) objects.
 pub struct World {
 
 }

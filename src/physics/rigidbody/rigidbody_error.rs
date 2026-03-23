@@ -1,7 +1,7 @@
 use crate::shape::ShapeError;
 
 #[derive(Debug, PartialEq)]
-/// [`Err`] returned by [`RigidBodyResult`].
+/// [`Err`] returned by [`RigidbodyResult`](super::RigidbodyResult).
 pub enum RigidbodyError {
   ShapeError(ShapeError)
 }

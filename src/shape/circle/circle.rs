@@ -2,7 +2,7 @@ use std::fmt;
 use crate::math::Scalar;
 use super::{CircleResult, CircleRadius};
 
-/// A geometric [circle](https://en.wikipedia.org/wiki/Circle) with radius of length `radius`.
+#[doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/src/docs/circle.md"))]
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Circle {
   radius: CircleRadius,

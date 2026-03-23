@@ -2,7 +2,7 @@ use std::fmt;
 use super::circle::Circle;
 
 /// A graphical representation of an object. Each variant of [`Shape`] can contain different fields. Required by
-/// [`RigidBody`](crate::physics::RigidBody).
+/// [`RigidBody`](crate::physics::rigidbody::Rigidbody).
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub enum Shape {
   Circle(Circle)

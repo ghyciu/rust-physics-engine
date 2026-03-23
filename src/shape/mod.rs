@@ -1,4 +1,4 @@
-/// A geometric [circle](https://en.wikipedia.org/wiki/Circle).
+#[doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/src/docs/circle.md"))]
 pub mod circle;
 mod shape;
 mod shape_result;

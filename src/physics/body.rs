@@ -1,7 +1,7 @@
 use std::fmt;
 use crate::math::{Vector2, Scalar};
 
-/// Describes the physics of a [`RigidBody`](super::rigid_body::RigidBody) and how they will interact with the [`World`](super::world::World).
+/// Describes the physics of a [`RigidBody`](crate::physics::rigidbody::Rigidbody) and how they will interact with the [`World`](super::world::World).
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Body {
   position: Vector2,

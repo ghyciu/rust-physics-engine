@@ -3,7 +3,7 @@ use crate::physics::Body;
 use super::RigidbodyResult;
 use crate::shape::{Shape, ShapeResult, ToShapeResult};
 
-/// Any object with physics and characteristics.
+#[doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/src/docs/rigidbody.md"))]
 #[derive(Debug, PartialEq)]
 pub struct Rigidbody {
   shape: Shape,

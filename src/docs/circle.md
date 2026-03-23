@@ -1,0 +1,1 @@
+A geometric [circle](https://en.wikipedia.org/wiki/Circle) with radius of length `radius`.
