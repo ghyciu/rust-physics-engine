@@ -1,45 +1,50 @@
 use std::fmt;
-use crate::physics::scalar::Scalar;
-use super::vector2::Vector2;
+use crate::math::{Vector2, Scalar};
 
-/// A `Body` is any object implemented by `RigidBody` which contains a set of values for how the
-/// shape will be rendered on the screen. A `RigidBody` will always have the same `Body` fields
-/// regardless of the shape.
+/// Describes the physics of a [`RigidBody`](super::rigid_body::RigidBody) and how they will interact with the [`World`](super::world::World).
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Body {
   position: Vector2,
   rotation: f32,
 }
 
 impl Body {
-  /// Creates a new `Body` with the position `Vector2` and rotation `Scalar`.
+  /// Create a new [`Body`] object.
   pub fn new<T: Scalar>(position: Vector2, rotation: T) -> Body {
     Body {position, rotation: rotation.to_scalar()}
   }
 
   /// Shorthand constructor for `Body::new(Vector2::new(0, 0), 0)`.
-  pub const ZERO: Body = Body {position: Vector2::ZERO, rotation: 0.0,};
+  pub const ZERO: Body = Body {position: Vector2::ZERO, rotation: 0.0};
 
-  /// Private getter for `body.position`. Used only when printing to console.
+  /// Return the `position` of the `Body`.
   fn get_position(&self) -> Vector2 {
     self.position
   }
-
-  /// Private getter for `body.rotation`. Used only when printing to console.
-  fn get_rotation(&self) -> f32 {
-    self.rotation
-  }
 }
 
-impl Copy for Body {}
-impl Clone for Body {
-  fn clone(&self) -> Body {
-    *self
-  }
-}
-
-/// Prints the `Body` object represented as `Body(position, rotation)` in text.
 impl fmt::Display for Body {
   fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-    write!(f, "{}, {}", self.get_position(), self.get_rotation())
+    write!(f, "{}", self.get_position())
+  }
+}
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+
+  #[test]
+  fn new() {
+    assert_eq!(Body::new(Vector2::new(1.0, 2.0), 3.0), Body { position: Vector2::new(1.0, 2.0), rotation: 3.0 });
+  }
+
+  #[test]
+  fn get_position() {
+    assert_eq!(Body::new(Vector2::new(1.0, 2.0), 3.0).get_position(), Vector2::new(1.0, 2.0));
+  }
+
+  #[test]
+  fn print() {
+    assert_eq!(Body::new(Vector2::new(1.0, 2.0), 3.0).to_string(), "(1, 2)");
   }
 }

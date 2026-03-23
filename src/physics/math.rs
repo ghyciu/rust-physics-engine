@@ -1,4 +1,4 @@
-use super::vector2::Vector2;
+use crate::math::Vector2;
 
 pub struct Math {}
 

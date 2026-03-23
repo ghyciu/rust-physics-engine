@@ -1,23 +1,19 @@
 use super::scalar::Scalar;
 use std::fmt;
-use std::hash::{Hash, Hasher};
 use std::ops::Add;
 use std::ops::Sub;
 use std::ops::Mul;
 use std::ops::Div;
 
-/// Represents a 2D Vector with values `x` and `y`.
-/// # Construction
-/// ```
-/// let v: Vector2 = Vector2::new(x, y)
-/// ```
+/// 2D Vector with values `x` and `y`.
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Vector2 {
   x: f32,
   y: f32,
 }
 
 impl Vector2 {
-  /// Creates a new `Vector2`.
+  /// Creates a new [`Vector2`].
   pub fn new<T: Scalar, U: Scalar>(x: T, y: U) -> Vector2 {
     Vector2 { x: x.to_scalar(), y: y.to_scalar() }
   }
@@ -25,18 +21,18 @@ impl Vector2 {
   /// Shorthand constructor for ```Vector2::new(0, 0)```.
   pub const ZERO: Vector2 = Vector2 { x: 0.0, y: 0.0 };
 
-  /// Public getter for `Vector2.x`.
+  /// Returns the `x` of the [`Vector2`].
   pub fn get_x(&self) -> f32 {
     self.x
   }
 
-  /// Public getter for `Vector2.y`.
+  /// Returns the `y` of the [`Vector2`].
   pub fn get_y(&self) -> f32 {
     self.y
   }
 }
 
-/// Adds two `Vector2` together.
+/// Implementation for adding two [`Vector2`] together.
 impl Add<Vector2> for Vector2 {
   type Output = Vector2;
   fn add(self, other: Vector2) -> Vector2 {
@@ -44,7 +40,7 @@ impl Add<Vector2> for Vector2 {
   }
 }
 
-/// Subtracts a `Vector2` from a `Vector2`.
+/// Implementation for subtracting a [`Vector2`] by a `Vector2`.
 impl Sub<Vector2> for Vector2 {
   type Output = Vector2;
   fn sub(self, other: Vector2) -> Vector2 {
@@ -52,7 +48,7 @@ impl Sub<Vector2> for Vector2 {
   }
 }
 
-/// Multiplies a `Vector2` by a `Scalar`.
+/// Implementation for multiplying a [`Vector2`] by a [`Scalar`].
 impl<T: Scalar> Mul<T> for Vector2 {
   type Output = Vector2;
   fn mul(self, scalar: T) -> Vector2 {
@@ -61,7 +57,7 @@ impl<T: Scalar> Mul<T> for Vector2 {
   }
 }
 
-/// Divides a `Vector2` by a `Scalar`.
+/// Implementation for dividing a [`Vector2`] by a [`Scalar`].
 impl<T: Scalar> Div<T> for Vector2 {
   type Output = Vector2;
   fn div(self, scalar: T) -> Vector2 {
@@ -70,32 +66,49 @@ impl<T: Scalar> Div<T> for Vector2 {
   }
 }
 
-impl Copy for Vector2 {}
-impl Clone for Vector2 {
-  fn clone(&self) -> Vector2 {
-    *self
-  }
-}
-
-/// Prints the `Vector2` represented as `(x, y)` in text.
 impl fmt::Display for Vector2 {
   fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
     write!(f, "({}, {})", self.get_x(), self.get_y())
   }
 }
 
-/// Returns `true` if the x and y components of the two comparing `Vector2` are equal.
-impl Eq for Vector2 {}
-impl PartialEq for Vector2 {
-  fn eq(&self, other: &Vector2) -> bool {
-    self.get_x() == other.get_x() && self.get_y() == other.get_y()
-  }
-}
+#[cfg(test)]
+mod tests {
+  use super::*;
 
-/// Allows `Vector2` to be used as a `HashMap` or `HashSet` entry.
-impl Hash for Vector2 {
-  fn hash<H: Hasher>(&self, state: &mut H) {
-    self.get_x().to_bits().hash(state);
-    self.get_y().to_bits().hash(state);
+  #[test]
+  fn new() {
+    assert_eq!(Vector2::new(2.0, 3.0), Vector2 {x: 2.0, y:3.0})
+  }
+
+  #[test]
+  fn add() {
+    let vector_a: Vector2 = Vector2::new(1.0, 2.0);
+    let vector_b: Vector2 = Vector2::new(3.0, 4.0);
+    assert_eq!(Vector2::new(4.0, 6.0), vector_a + vector_b);
+  }
+
+  #[test]
+  fn sub() {
+    let vector_a: Vector2 = Vector2::new(4.0, 6.0);
+    let vector_b: Vector2 = Vector2::new(3.0, 4.0);
+    assert_eq!(Vector2::new(1.0, 2.0), vector_a - vector_b);
+  }
+
+  #[test]
+  fn mul() {
+    let vector: Vector2 = Vector2::new(4.0, 1.0);
+    assert_eq!(Vector2::new(8.0, 2.0), vector * 2);
+  }
+
+  #[test]
+  fn div() {
+    let vector: Vector2 = Vector2::new(4.0, 1.0);
+    assert_eq!(Vector2::new(2.0, 0.5), vector / 2);
+  }
+  
+  #[test]
+  fn print() {
+    assert_eq!(Vector2::new(1.0, 2.0).to_string(), "(1, 2)");
   }
 }

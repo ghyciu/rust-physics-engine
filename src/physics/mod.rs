@@ -1,7 +1,9 @@
-mod vector2;
-mod scalar;
-mod math;
-mod shape;
-pub(crate) mod circle;
 mod body;
-pub(crate) mod rigid_body;
+mod rigid_body;
+mod world;
+
+pub use body::Body;
+pub use world::World;
+pub use rigid_body::RigidBody;
+pub use rigid_body::RigidBodyResult;
+pub use rigid_body::RigidBodyError;
