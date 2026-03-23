@@ -20,7 +20,7 @@ mod tests {
 
   #[test]
   fn from_shape_error() {
-    let rigid_body_error: RigidbodyError = ShapeError::CircleError(CircleError::CircleRadiusError(CircleRadiusError::NonPositiveError)).into();
-    assert_eq!(RigidbodyError::ShapeError(ShapeError::CircleError(CircleError::CircleRadiusError(CircleRadiusError::NonPositiveError))), rigid_body_error);
+    let rigidbody_error: RigidbodyError = ShapeError::CircleError(CircleError::CircleRadiusError(CircleRadiusError::NonPositiveError)).into();
+    assert_eq!(RigidbodyError::ShapeError(ShapeError::CircleError(CircleError::CircleRadiusError(CircleRadiusError::NonPositiveError))), rigidbody_error);
   }
 }

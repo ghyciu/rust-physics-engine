@@ -1,7 +1,7 @@
 use super::{CircleRadiusError, CircleRadiusResult};
 
 /// Validated `radius` of a [`Circle`](super::Circle).
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub struct CircleRadius(f32);
 
 impl CircleRadius {
@@ -16,12 +16,6 @@ impl CircleRadius {
   /// Returns the value of [`CircleRadius`].
   pub fn get(&self) -> f32 {
     self.0
-  }
-}
-
-impl PartialEq for CircleRadius {
-  fn eq(&self, other: &CircleRadius) -> bool {
-    self.0 == other.0
   }
 }
 

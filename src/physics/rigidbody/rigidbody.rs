@@ -31,7 +31,7 @@ impl Rigidbody {
 
 impl fmt::Display for Rigidbody {
   fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-    write!(f, "RigidBody({} at {})", self.get_shape(), self.get_body())
+    write!(f, "Rigidbody({} at {})", self.get_shape(), self.get_body())
   }
 }
 
@@ -42,23 +42,29 @@ mod tests {
 
   #[test]
   fn new() {
-    let rigid_body_a: Rigidbody = Rigidbody::new(Circle::new(10.0)).unwrap();
-    let rigid_body_b: Rigidbody = Rigidbody {
+    let rigidbody_a: Rigidbody = Rigidbody::new(Circle::new(10.0)).unwrap();
+    let rigidbody_b: Rigidbody = Rigidbody {
       shape: Shape::Circle(Circle::new(10.0).unwrap()),
       body: Body::ZERO
     };
-    assert_eq!(rigid_body_a, rigid_body_b);
+    assert_eq!(rigidbody_a, rigidbody_b);
   }
 
   #[test]
   fn get_shape() {
-    let rigid_body: Rigidbody = Rigidbody::new(Circle::new(10.0)).unwrap();
-    assert_eq!(rigid_body.get_shape(), Shape::Circle(Circle::new(10.0).unwrap()));
+    let rigidbody: Rigidbody = Rigidbody::new(Circle::new(10.0)).unwrap();
+    assert_eq!(rigidbody.get_shape(), Shape::Circle(Circle::new(10.0).unwrap()));
   }
 
   #[test]
   fn get_body() {
-    let rigid_body: Rigidbody = Rigidbody::new(Circle::new(10.0)).unwrap();
-    assert_eq!(rigid_body.get_body(), Body::ZERO);
+    let rigidbody: Rigidbody = Rigidbody::new(Circle::new(10.0)).unwrap();
+    assert_eq!(rigidbody.get_body(), Body::ZERO);
+  }
+
+  #[test]
+  fn print() {
+    let rigidbody: Rigidbody = Rigidbody::new(Circle::new(10.0)).unwrap();
+    assert_eq!(rigidbody.to_string(), "Rigidbody(Circle(10) at (0, 0))");
   }
 }

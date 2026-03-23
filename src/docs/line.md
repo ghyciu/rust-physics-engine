@@ -1,0 +1,1 @@
+A geometric [line segment](https://en.wikipedia.org/wiki/Line_segment) with length `length`.
