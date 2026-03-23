@@ -7,8 +7,9 @@ use crate::shape::line::LineResult;
 pub struct Line(Length);
 
 impl Line {
-  pub fn new<L>(length: L) -> LineResult
-  where L: TryInto<Length, Error = LengthError>, {
+  /// Creates a new [`Line`] object. Returns a [`LineResult`](super::LineResult).
+  pub fn new<T>(length: T) -> LineResult
+  where T: TryInto<Length, Error = LengthError> {
     Ok(Line{ 0: length.try_into()?})
   }
 

@@ -1,23 +1,21 @@
 use std::fmt;
-use crate::math::Scalar;
-use super::{CircleResult, CircleRadius};
+use crate::math::length::{Length, LengthError};
+use super::{CircleResult};
 
 #[doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/src/docs/circle.md"))]
 #[derive(Debug, Copy, Clone, PartialEq)]
-pub struct Circle {
-  radius: CircleRadius,
-}
+pub struct Circle(Length);
 
 impl Circle {
   /// Creates a new [`Circle`] object. Returns a [`CircleResult`](super::CircleResult).
-  pub fn new<T: Scalar>(radius: T) -> CircleResult {
-    let radius: CircleRadius = CircleRadius::new(radius.to_scalar())?;
-    Ok(Circle{ radius })
+  pub fn new<T>(radius: T) -> CircleResult
+  where T: TryInto<Length, Error = LengthError> {
+    Ok(Circle{ 0: radius.try_into()?})
   }
 
   /// Gets the `radius` of the [`Circle`]. Used only when printing to console.
   fn get_radius(&self) -> f32 {
-    self.radius.get()
+    self.0.get()
   }
 }
 

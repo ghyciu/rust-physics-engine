@@ -1,15 +1,15 @@
-use super::CircleRadiusError;
+use crate::math::length::LengthError;
 
-/// [`Err`] returned by [`CircleResult`](super::CircleResult). A variant of [`ShapeError`](crate::shape::ShapeError).
+/// [`Err`] returned by [`CircleResult`](super::CircleResult). A type of [`ShapeError`](crate::shape::ShapeError).
 #[derive(Debug, PartialEq)]
 pub enum CircleError {
-  /// The `radius` is invalid.
-  CircleRadiusError(CircleRadiusError)
+  /// The radius of the circle is invalid.
+  LengthError(LengthError)
 }
 
-impl From<CircleRadiusError> for CircleError {
-  fn from(value: CircleRadiusError) -> Self {
-    CircleError::CircleRadiusError(value)
+impl From<LengthError> for CircleError {
+  fn from(value: LengthError) -> Self {
+    CircleError::LengthError(value)
   }
 }
 
@@ -18,7 +18,7 @@ mod tests {
   use super::*;
   #[test]
   fn from_circle_radius_error() {
-    let circle_error: CircleError = CircleRadiusError::NonPositiveError.into();
-    assert_eq!(CircleError::CircleRadiusError(CircleRadiusError::NonPositiveError), circle_error);
+    let circle_error: CircleError = LengthError::NonPositiveError.into();
+    assert_eq!(CircleError::LengthError(LengthError::NonPositiveError), circle_error);
   }
 }

@@ -14,13 +14,14 @@ impl From<ShapeError> for RigidbodyError {
 
 #[cfg(test)]
 mod tests {
-  use crate::shape::circle::{CircleError, CircleRadiusError};
+  use crate::math::length::LengthError;
+  use crate::shape::circle::{CircleError};
   use crate::shape::ShapeError;
   use super::RigidbodyError;
 
   #[test]
   fn from_shape_error() {
-    let rigidbody_error: RigidbodyError = ShapeError::CircleError(CircleError::CircleRadiusError(CircleRadiusError::NonPositiveError)).into();
-    assert_eq!(RigidbodyError::ShapeError(ShapeError::CircleError(CircleError::CircleRadiusError(CircleRadiusError::NonPositiveError))), rigidbody_error);
+    let rigidbody_error: RigidbodyError = ShapeError::CircleError(CircleError::LengthError(LengthError::NonPositiveError)).into();
+    assert_eq!(RigidbodyError::ShapeError(ShapeError::CircleError(CircleError::LengthError(LengthError::NonPositiveError))), rigidbody_error);
   }
 }

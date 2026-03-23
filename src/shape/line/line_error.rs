@@ -3,7 +3,7 @@ use crate::math::length::LengthError;
 /// [`Err`] returned by [`LineResult`](super::LineResult). A type of [`ShapeError`](crate::shape::ShapeError).
 #[derive(Debug, PartialEq)]
 pub enum LineError {
-  /// The `radius` is invalid.
+  /// The length of the line is invalid.
   LengthError(LengthError)
 }
 
