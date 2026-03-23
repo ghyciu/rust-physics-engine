@@ -1,5 +1,6 @@
 use super::{LengthError, LengthResult};
 use crate::math::Scalar;
+use std::convert::TryFrom;
 
 #[doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/src/docs/length.md"))]
 #[derive(Debug, Copy, Clone, PartialEq)]
@@ -18,6 +19,22 @@ impl Length {
   /// Returns the value of [`Length`].
   pub fn get(&self) -> f32 {
     self.0
+  }
+}
+
+/// Implementation for converting an `i32` type to a [`Length`] object.
+impl TryFrom<i32> for Length {
+  type Error = LengthError;
+  fn try_from(value: i32) -> Result<Self, Self::Error> {
+    Length::new(value)
+  }
+}
+
+/// Implementation for converting an `f32` type to a [`Length`] object.
+impl TryFrom<f32> for Length {
+  type Error = LengthError;
+  fn try_from(value: f32) -> Result<Self, Self::Error> {
+    Length::new(value)
   }
 }
 

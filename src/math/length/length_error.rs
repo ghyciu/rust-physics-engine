@@ -1,6 +1,6 @@
 use std::fmt;
 
-/// [`Err`] returned by [`Length`](super::Length).
+/// [`Err`] returned by [`Length`](super::Length). A type of [`ShapeError`](crate::shape::ShapeError).
 #[derive(Debug, PartialEq)]
 pub enum LengthError {
   /// [`Length`](super::Length) is not positive.
