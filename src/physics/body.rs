@@ -18,9 +18,10 @@ impl Body {
   pub const ZERO: Body = Body {position: Vector2::ZERO, rotation: 0.0};
 
   /// Return the `position` of the `Body`.
-  fn get_position(&self) -> Vector2 {
+  pub fn get_position(&self) -> Vector2 {
     self.position
   }
+
 }
 
 impl fmt::Display for Body {

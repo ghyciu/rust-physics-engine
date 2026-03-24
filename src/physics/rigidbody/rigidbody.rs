@@ -1,4 +1,5 @@
 use std::fmt;
+use crate::graphics::Renderable;
 use crate::physics::Body;
 use super::RigidbodyResult;
 use crate::shape::{Shape, ShapeResult, ToShapeResult};
@@ -26,6 +27,12 @@ impl Rigidbody {
   /// Gets the `body`.
   fn get_body(&self) -> Body {
     self.body
+  }
+
+  /// Renders the specific [`RigidBody`] to the screen. Called by [`World`](crate::physics::World) when
+  /// rendering all attached objects.
+  pub(crate) fn render(&self) {
+    self.get_shape().render(self.get_body().get_position());
   }
 }
 

@@ -1,14 +1,5 @@
-use super::shape::Shape;
+use crate::math::Vector2;
 
 pub trait Renderable {
-  fn render(&self);
-}
-
-impl Renderable for Shape {
-  fn render(&self) {
-    match self {
-      Shape::Line(line) => line.render(),
-      Shape::Circle(circle) => circle.render(),
-    }
-  }
+  fn render(&self, position: Vector2);
 }

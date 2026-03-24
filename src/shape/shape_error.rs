@@ -1,7 +1,9 @@
+use super::line::LineError;
 use super::circle::CircleError;
 
 /// [`Err`] returned by [`ShapeResult`](crate::shape::ShapeResult). A variant of [`RigidBodyResult`](crate::physics::rigidbody::RigidbodyResult).
 #[derive(Debug, PartialEq)]
 pub enum ShapeError {
+  LineError(LineError),
   CircleError(CircleError)
 }
