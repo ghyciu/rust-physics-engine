@@ -1,6 +1,4 @@
 use std::fmt;
-use crate::graphics::Renderable;
-use crate::math::Vector2;
 use crate::shape::line::Line;
 use super::circle::Circle;
 
@@ -17,15 +15,6 @@ impl fmt::Display for Shape {
     match self {
       Shape::Line(line) => write!(f, "{}", line),
       Shape::Circle(circle) => write!(f, "{}", circle),
-    }
-  }
-}
-
-impl Renderable for Shape {
-  fn render(&self, position: Vector2) {
-    match self {
-      Shape::Line(line) => line.render(position),
-      _ => unimplemented!()
     }
   }
 }

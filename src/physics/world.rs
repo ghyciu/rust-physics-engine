@@ -1,3 +1,4 @@
+use crate::graphics::{Renderer};
 use crate::physics::rigidbody::Rigidbody;
 
 /// Describes the world interacted by [`RigidBody`](crate::physics::rigidbody::Rigidbody) objects.
@@ -21,9 +22,9 @@ impl World {
     self.objects.push(object);
   }
 
-  pub fn render(&self) {
+  pub fn render(&self, renderer: &mut dyn Renderer) {
     for object in &self.objects {
-      object.render();
+      object.render(renderer);
     }
   }
 }

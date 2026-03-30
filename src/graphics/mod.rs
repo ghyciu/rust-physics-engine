@@ -1,3 +1,5 @@
-mod renderable;
+mod renderer;
+mod macroquad_renderer;
 
-pub use renderable::Renderable;
+pub use renderer::Renderer;
+pub use macroquad_renderer::MacroquadRenderer;

@@ -1,5 +1,5 @@
 use std::fmt;
-use crate::graphics::Renderable;
+use crate::graphics::Renderer;
 use crate::physics::Body;
 use super::RigidbodyResult;
 use crate::shape::{Shape, ShapeResult, ToShapeResult};
@@ -20,19 +20,25 @@ impl Rigidbody {
   }
 
   /// Gets the `shape`.
-  fn get_shape(&self) -> Shape {
-    self.shape
+  pub(crate) fn get_shape(&self) -> Shape {
+    match self.shape {
+      Shape::Circle(circle) => Shape::Circle(circle),
+      Shape::Line(line) => Shape::Line(line)
+    }
   }
 
   /// Gets the `body`.
-  fn get_body(&self) -> Body {
+  pub(crate) fn get_body(&self) -> Body {
     self.body
   }
 
-  /// Renders the specific [`RigidBody`] to the screen. Called by [`World`](crate::physics::World) when
-  /// rendering all attached objects.
-  pub(crate) fn render(&self) {
-    self.get_shape().render(self.get_body().get_position());
+  /// Renders the [`RigidBody`] using the given [`Renderer`].
+  pub fn render(&self, renderer: &mut dyn Renderer) {
+    let body: Body = self.get_body();
+    match self.get_shape() {
+      Shape::Line(line) => renderer.draw_line(line, body),
+      Shape::Circle(circle) => unimplemented!()
+    }
   }
 }
 
