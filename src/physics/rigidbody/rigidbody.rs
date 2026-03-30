@@ -36,8 +36,8 @@ impl Rigidbody {
   pub fn render(&self, renderer: &mut dyn Renderer) {
     let body: Body = self.get_body();
     match self.get_shape() {
-      Shape::Line(line) => renderer.draw_line(line, body),
-      Shape::Circle(circle) => unimplemented!()
+      Shape::Line(line) => renderer.render_line(line, body),
+      Shape::Circle(circle) => renderer.render_circle(circle, body),
     }
   }
 }
@@ -50,7 +50,9 @@ impl fmt::Display for Rigidbody {
 
 #[cfg(test)]
 mod tests {
+  use crate::shape::line::Line;
   use crate::shape::circle::Circle;
+  use crate::graphics::MockRenderer;
   use super::*;
 
   #[test]
@@ -73,6 +75,20 @@ mod tests {
   fn get_body() {
     let rigidbody: Rigidbody = Rigidbody::new(Circle::new(10.0)).unwrap();
     assert_eq!(rigidbody.get_body(), Body::ZERO);
+  }
+
+  #[test]
+  fn render_line() {
+    let rigidbody: Rigidbody = Rigidbody::new(Line::new(10.0)).unwrap();
+    let mut mock_renderer: MockRenderer = MockRenderer::new();
+    rigidbody.render(&mut mock_renderer);
+  }
+
+  #[test]
+  fn render_circle() {
+    let rigidbody: Rigidbody = Rigidbody::new(Circle::new(10.0)).unwrap();
+    let mut mock_renderer: MockRenderer = MockRenderer::new();
+    rigidbody.render(&mut mock_renderer);
   }
 
   #[test]

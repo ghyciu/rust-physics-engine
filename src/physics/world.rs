@@ -28,3 +28,34 @@ impl World {
     }
   }
 }
+
+#[cfg(test)]
+mod tests {
+  use crate::graphics::MockRenderer;
+  use crate::physics::rigidbody::Rigidbody;
+  use crate::physics::World;
+  use crate::shape::circle::Circle;
+
+  #[test]
+  fn new() {
+    let world: World = World::new();
+    assert_eq!(world.objects.len(), 0);
+  }
+
+  #[test]
+  fn add_object() {
+    let mut world: World = World::new();
+    let rigidbody: Rigidbody = Rigidbody::new(Circle::new(10.0)).unwrap();
+    world.add_object(rigidbody);
+    assert_eq!(world.objects.len(), 1);
+  }
+
+  #[test]
+  fn render() {
+    let mut world: World = World::new();
+    let rigidbody: Rigidbody = Rigidbody::new(Circle::new(10.0)).unwrap();
+    let mut mock_renderer: MockRenderer = MockRenderer::new();
+    world.add_object(rigidbody);
+    world.render(&mut mock_renderer);
+  }
+}
