@@ -81,7 +81,9 @@ mod tests {
   fn render_line() {
     let rigidbody: Rigidbody = Rigidbody::new(Line::new(10.0)).unwrap();
     let mut mock_renderer: MockRenderer = MockRenderer::new();
+    mock_renderer.clear_calls();
     rigidbody.render(&mut mock_renderer);
+    assert_eq!(mock_renderer.get_calls().get(0).unwrap().to_string(), "Line(10)");
   }
 
   #[test]
@@ -89,6 +91,7 @@ mod tests {
     let rigidbody: Rigidbody = Rigidbody::new(Circle::new(10.0)).unwrap();
     let mut mock_renderer: MockRenderer = MockRenderer::new();
     rigidbody.render(&mut mock_renderer);
+    assert_eq!(mock_renderer.get_calls().get(0).unwrap().to_string(), "Circle(10)");
   }
 
   #[test]
