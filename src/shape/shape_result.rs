@@ -2,7 +2,7 @@ use super::{Shape, ShapeError};
 
 /// [`Result`] whose [`Ok`] variant returns a type of [`Shape`]. May return a [`ShapeError`] if the variant `Shape` is invalid.
 ///
-/// **Variants:** [`CircleResult`]
+/// **Variants:** [`CircleResult`](crate::shape::circle::CircleResult)
 pub type ShapeResult = Result<Shape, ShapeError>;
 
 /// Trait for any [`ShapeResult`] variant to convert itself to a `ShapeResult`.

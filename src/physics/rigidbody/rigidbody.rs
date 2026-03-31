@@ -32,7 +32,7 @@ impl Rigidbody {
     self.body
   }
 
-  /// Renders the [`RigidBody`] using the given [`Renderer`].
+  /// Renders the [`Rigidbody`] using the given [`Renderer`].
   pub fn render(&self, renderer: &mut dyn Renderer) {
     let body: Body = self.get_body();
     match self.get_shape() {
