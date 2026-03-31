@@ -1,0 +1,1 @@
+A validated [`Scalar`] used in a [`Shape`](crate::shape::Shape).

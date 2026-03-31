@@ -1,16 +1,19 @@
 use std::fmt;
+use crate::shape::line::Line;
 use super::circle::Circle;
 
 /// A graphical representation of an object. Each variant of [`Shape`] can contain different fields. Required by
-/// [`RigidBody`](crate::physics::RigidBody).
+/// [`RigidBody`](crate::physics::rigidbody::Rigidbody).
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub enum Shape {
+  Line(Line),
   Circle(Circle)
 }
 
 impl fmt::Display for Shape {
   fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
     match self {
+      Shape::Line(line) => write!(f, "{}", line),
       Shape::Circle(circle) => write!(f, "{}", circle),
     }
   }
@@ -19,6 +22,11 @@ impl fmt::Display for Shape {
 #[cfg(test)]
 mod tests {
   use super::*;
+
+  #[test]
+  fn print_line() {
+    assert_eq!(Shape::Line(Line::new(10.0).unwrap()).to_string(), "Line(10)");
+  }
 
   #[test]
   fn print_circle() {
